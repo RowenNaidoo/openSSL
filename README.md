@@ -18,3 +18,13 @@ Generate public key
 ```
 openssl x509 -pubkey -noout -in servercert.pem > pubkey.pem
 ```
+
+Sign message
+```
+openssl dgst -sha256 -sign ecdsa_private.pem myData.txt > signature.bin
+```
+
+Verify signed message suing public key
+```
+openssl dgst -sha256 -verify pubkey.pem -signature signature.bin boardingPass.json
+```
