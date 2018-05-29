@@ -28,3 +28,19 @@ Verify signed message suing public key
 ```
 openssl dgst -sha256 -verify pubkey.pem -signature signature.bin boardingPass.json
 ```
+
+Sign using Java
+```
+Signature ecdsaSignature = Signature.getInstance("SHA256withECDSA");
+ecdsaSignature.initSign(eccPrivateKey);
+ecdsaSignature.update(dataToSign);
+byte[] signature = ecdsaSignature.sign();
+```
+
+Verify signature using Java
+```
+Signature ecdsaSignature = Signature.getInstance("SHA256withECDSA");
+ecdsaSignature.initVerify(certificate);
+ecdsaSignature.update(dataToVerify);
+boolean isValide = ecdsaSignature.verify(rawSignature);
+```
